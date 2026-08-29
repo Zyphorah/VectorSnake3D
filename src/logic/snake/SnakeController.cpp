@@ -15,56 +15,56 @@ void SnakeController::setupControls()
 {
     // Touches de rotation avec flèches
     registry.injectCommand(
-        Keyboard::Up,
+        Keyboard::Key::Up,
         [this]() {
             pivotPointAxe.x = -1;
             directionPivot.x = -1;
         }
     );
     registry.injectReleasedCommand(
-        Keyboard::Up,
+        Keyboard::Key::Up,
         [this]() {
             pivotPointAxe.x = 0;
         }
     );
     
     registry.injectCommand(
-        Keyboard::Down,
+        Keyboard::Key::Down,
         [this]() {
             pivotPointAxe.x = 1;
             directionPivot.x = 1;
         }
     );
     registry.injectReleasedCommand(
-        Keyboard::Down,
+        Keyboard::Key::Down,
         [this]() {
             pivotPointAxe.x = 0;
         }
     );
     
     registry.injectCommand(
-        Keyboard::Left,
+        Keyboard::Key::Left,
         [this]() {
             pivotPointAxe.y = -1;
             directionPivot.y = -1;
         }
     );
     registry.injectReleasedCommand(
-        Keyboard::Left,
+        Keyboard::Key::Left,
         [this]() {
             pivotPointAxe.y = 0;
         }
     );
     
     registry.injectCommand(
-        Keyboard::Right,
+        Keyboard::Key::Right,
         [this]() {
             pivotPointAxe.y = 1;
             directionPivot.y = 1;
         }
     );
     registry.injectReleasedCommand(
-        Keyboard::Right,
+        Keyboard::Key::Right,
         [this]() {
             pivotPointAxe.y = 0;
         }
@@ -74,42 +74,42 @@ void SnakeController::setupControls()
     // Note: Using getDirectionRef() to modify direction directly, matching original logic
     
     registry.injectCommand(
-        Keyboard::A,
+        Keyboard::Key::A,
         [this]() {
             snake.getDirectionRef() = Vector3f(-20, 0, 0);
         }
     );
     
     registry.injectCommand(
-        Keyboard::D,
+        Keyboard::Key::D,
         [this]() {
             snake.getDirectionRef() = Vector3f(20, 0, 0);
         }
     );
     
     registry.injectCommand(
-        Keyboard::W,
+        Keyboard::Key::W,
         [this]() {
             snake.getDirectionRef() = Vector3f(0, 0, -20);
         }
     );
     
     registry.injectCommand(
-        Keyboard::S,
+        Keyboard::Key::S,
         [this]() {
             snake.getDirectionRef() = Vector3f(0, 0, 20);
         }
     );
     
     registry.injectCommand(
-        Keyboard::E,
+        Keyboard::Key::E,
         [this]() {
             snake.getDirectionRef() = Vector3f(0, 10, 0);
         }
     );
     
     registry.injectCommand(
-        Keyboard::Q,
+        Keyboard::Key::Q,
         [this]() {
             snake.getDirectionRef() = Vector3f(0, -10, 0);
         }

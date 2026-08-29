@@ -27,12 +27,12 @@ private:
     int windowWidth;
     int windowHeight;
     
+    Font font;
     RectangleShape restartButton;
     RectangleShape quitButton;
     Text restartText;
     Text quitText;
     Text gameOverText;
-    Font font;
     
     function<void()> onRestartCallback;
     function<void()> onQuitCallback;

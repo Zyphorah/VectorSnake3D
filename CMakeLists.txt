@@ -4,21 +4,10 @@ project(Snake3D)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# SFML
-set(SFML_DIR "${CMAKE_SOURCE_DIR}/SFML")
+find_package(SFML 3 COMPONENTS System Window Graphics REQUIRED)
 
 include_directories(
     ${CMAKE_SOURCE_DIR}/include
-    ${SFML_DIR}
-    ${SFML_DIR}/System
-    ${SFML_DIR}/Window
-    ${SFML_DIR}/Graphics
-    ${SFML_DIR}/Audio
-    ${SFML_DIR}/Network
-)
-
-link_directories(
-    ${SFML_DIR}/lib
 )
 
 add_executable(Snake3D
@@ -38,7 +27,7 @@ add_executable(Snake3D
 )
 
 target_link_libraries(Snake3D
-    sfml-graphics
-    sfml-window
-    sfml-system
+    SFML::Graphics
+    SFML::Window
+    SFML::System
 )

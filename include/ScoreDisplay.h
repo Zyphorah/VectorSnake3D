@@ -15,8 +15,8 @@ public:
     void render(RenderWindow& window);
     
 private:
-    Text scoreText;
     Font font;
+    Text scoreText;
     int windowWidth;
     int windowHeight;
     int currentScore;

@@ -2,7 +2,7 @@
 #include <iostream>
 
 ScoreDisplay::ScoreDisplay(int width, int height)
-    : windowWidth(width), windowHeight(height), currentScore(3)
+    : font(), scoreText(font), windowWidth(width), windowHeight(height), currentScore(3)
 {
     initializeFont();
     updateScoreText();
@@ -11,8 +11,8 @@ ScoreDisplay::ScoreDisplay(int width, int height)
 void ScoreDisplay::initializeFont()
 {
     // Try to load a default system font
-    if (!font.loadFromFile("/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf")) {
-        if (!font.loadFromFile("arial.ttf")) {
+    if (!font.openFromFile("/usr/share/fonts/noto/NotoSans-Regular.ttf")) {
+        if (!font.openFromFile("arial.ttf")) {
             cerr << "Warning: Could not load font for score display" << endl;
         }
     }
@@ -29,8 +29,8 @@ void ScoreDisplay::updateScoreText()
     
     // Position in top right corner
     scoreText.setPosition(
-        windowWidth - scoreText.getLocalBounds().width - 20,
-        20
+        {windowWidth - scoreText.getLocalBounds().size.x - 20.f,
+        20.f}
     );
 }
 

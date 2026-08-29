@@ -7,24 +7,19 @@ InputHandler::InputHandler(CommandRegistry& commandRegistry, RenderWindow& rende
 
 void InputHandler::handleInput()
 {
-    Event event;
-    while (window.pollEvent(event))
+    while (const std::optional<Event> event = window.pollEvent())
     {
-        switch (event.type)
+        if (event->is<Event::Closed>())
         {
-            case Event::Closed:
-                window.close();
-                break;
-
-            case Event::KeyPressed:
-                registry.executePressedCommand(event.key.code);
-                break;
-            case Event::KeyReleased:
-                registry.executeReleasedCommand(event.key.code);
-                break;
-
-            default:
-                break;
+            window.close();
+        }
+        else if (const auto* keyPressed = event->getIf<Event::KeyPressed>())
+        {
+            registry.executePressedCommand(keyPressed->code);
+        }
+        else if (const auto* keyReleased = event->getIf<Event::KeyReleased>())
+        {
+            registry.executeReleasedCommand(keyReleased->code);
         }
     }
 }

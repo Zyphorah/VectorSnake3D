@@ -2,7 +2,7 @@
 #include <iostream>
 
 GameMenu::GameMenu(int width, int height)
-    : visible(false), windowWidth(width), windowHeight(height)
+    : visible(false), windowWidth(width), windowHeight(height), font(), restartText(font), quitText(font), gameOverText(font)
 {
     initializeFont();
     initializeButtons();
@@ -11,8 +11,8 @@ GameMenu::GameMenu(int width, int height)
 void GameMenu::initializeFont()
 {
     // Try to load a default system font - if it fails, we'll use SFML built-in
-    if (!font.loadFromFile("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf")) {
-        if (!font.loadFromFile("arial.ttf")) {
+    if (!font.openFromFile("/usr/share/fonts/noto/NotoSans-Regular.ttf")) {
+        if (!font.openFromFile("arial.ttf")) {
             cerr << "Warning: Could not load font, text will not display properly" << endl;
         }
     }
@@ -26,16 +26,16 @@ void GameMenu::initializeButtons()
     gameOverText.setCharacterSize(60);
     gameOverText.setFillColor(Color::Red);
     gameOverText.setPosition(
-        windowWidth / 2 - gameOverText.getLocalBounds().width / 2,
-        windowHeight / 4
+        {windowWidth / 2.f - gameOverText.getLocalBounds().size.x / 2.f,
+        windowHeight / 4.f}
     );
     
     // Restart Button
-    restartButton.setSize(Vector2f(200, 60));
+    restartButton.setSize({200.f, 60.f});
     restartButton.setFillColor(Color::Green);
     restartButton.setPosition(
-        windowWidth / 2 - 220,
-        windowHeight / 2 + 50
+        {windowWidth / 2.f - 220.f,
+        windowHeight / 2.f + 50.f}
     );
     
     restartText.setString("RESTART");
@@ -43,16 +43,16 @@ void GameMenu::initializeButtons()
     restartText.setCharacterSize(30);
     restartText.setFillColor(Color::White);
     restartText.setPosition(
-        restartButton.getPosition().x + 20,
-        restartButton.getPosition().y + 15
+        {restartButton.getPosition().x + 20.f,
+        restartButton.getPosition().y + 15.f}
     );
     
     // Quit Button
-    quitButton.setSize(Vector2f(200, 60));
+    quitButton.setSize({200.f, 60.f});
     quitButton.setFillColor(Color::Red);
     quitButton.setPosition(
-        windowWidth / 2 + 20,
-        windowHeight / 2 + 50
+        {windowWidth / 2.f + 20.f,
+        windowHeight / 2.f + 50.f}
     );
     
     quitText.setString("QUIT");
@@ -60,8 +60,8 @@ void GameMenu::initializeButtons()
     quitText.setCharacterSize(30);
     quitText.setFillColor(Color::White);
     quitText.setPosition(
-        quitButton.getPosition().x + 50,
-        quitButton.getPosition().y + 15
+        {quitButton.getPosition().x + 50.f,
+        quitButton.getPosition().y + 15.f}
     );
 }
 

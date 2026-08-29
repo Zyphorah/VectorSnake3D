@@ -61,16 +61,16 @@ void CubeRenderer::rotate(vector<Vector3f>& vecteur, Vector2f& angle, const Vect
 void CubeRenderer::drawLine(vector<Vector2f>& matrixCube, RenderWindow& window)
 {
     sf::Transform translation;
-    translation.translate(-300, 30);
+    translation.translate({-300.f, 30.f});
     
     for (size_t i = 0; i < matrixCube.size() - 1; i++) 
     {
         sf::Vertex line[] = 
         {    
-            sf::Vertex(matrixCube[i], sf::Color::Red),
-            sf::Vertex(matrixCube[i + 1], sf::Color::Red)
+            sf::Vertex{matrixCube[i], sf::Color::Red},
+            sf::Vertex{matrixCube[i + 1], sf::Color::Red}
         };
-        window.draw(line, 2, sf::Lines);
+        window.draw(line, 2, sf::PrimitiveType::Lines);
     }
 }
 

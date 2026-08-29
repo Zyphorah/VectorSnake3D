@@ -99,9 +99,8 @@ void gameLoop(RenderWindow& window, Sprite& backgroundSprite)
         scoreDisplay.render(window);
         
         // Handle mouse events
-        sf::Event event;
-        while(window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
+        while (const std::optional<sf::Event> event = window.pollEvent()) {
+            if (event->is<sf::Event::Closed>()) {
                 window.close();
                 return;
             }
@@ -131,12 +130,11 @@ void gameLoop(RenderWindow& window, Sprite& backgroundSprite)
         renderSnakeCube(snake, window, pivotPointAxe, angleRotation, DirectionPivot, LimiteGrille);
         gameMenu.render(window);
         
-        sf::Event event;
-        while(window.pollEvent(event)) {
-            if (event.type == sf::Event::MouseButtonPressed) {
+        while (const std::optional<sf::Event> event = window.pollEvent()) {
+            if (event->is<sf::Event::MouseButtonPressed>()) {
                 gameMenu.handleMouseClick(window.mapPixelToCoords(sf::Mouse::getPosition(window)));
             }
-            else if (event.type == sf::Event::Closed) {
+            else if (event->is<sf::Event::Closed>()) {
                 window.close();
                 return;
             }
@@ -147,7 +145,7 @@ void gameLoop(RenderWindow& window, Sprite& backgroundSprite)
 
 int main()
 {
-    RenderWindow window(VideoMode(1300, 800), "Matrix");  
+    RenderWindow window(VideoMode({1300, 800}), "Matrix");  
 
     Texture textureFond;
     if (!textureFond.loadFromFile("background.png")) {
@@ -161,8 +159,8 @@ int main()
     }
     sf::Sprite backgroundSprite(textureFond);
     backgroundSprite.setScale(
-        float(window.getSize().x) / backgroundSprite.getTexture()->getSize().x,
-        float(window.getSize().y) / backgroundSprite.getTexture()->getSize().y
+        {float(window.getSize().x) / backgroundSprite.getTexture().getSize().x,
+        float(window.getSize().y) / backgroundSprite.getTexture().getSize().y}
     );
 
     window.setFramerateLimit(60);
