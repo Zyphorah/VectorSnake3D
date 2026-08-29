@@ -13,34 +13,40 @@ This project is a 3D Snake game written in C++ using the SFML graphics library. 
 ## Dependencies
 - SFML (Simple and Fast Multimedia Library)
 
-## Installation on Debian
+## Installation on Arch Linux
 
-1. Update the package list:
+1. Update the system and install dependencies (SFML 3, CMake, compiler):
 
-sudo apt update
+```bash
+sudo pacman -Syu sfml cmake gcc make git
+```
 
-2. Install the SFML library:
+2. Clone the project repository:
 
-sudo apt install libsfml-dev
-
-3. Clone the project repository:
-
+```bash
 git clone https://github.com/Zyphorah/Snake3D.git
+```
 
-4. Change into the project directory:
+3. Change into the project directory:
 
+```bash
 cd Snake3D
+```
 
-5. Compile the project with CMake:
+4. Compile the project with CMake:
 
-   mkdir -p build
-   cd build
-   cmake ..
-   cmake --build .
+```bash
+mkdir -p build
+cd build
+cmake ..
+cmake --build .
+```
 
-6. Run the game:
+5. Run the game:
 
-   ./Snake3D
+```bash
+./Snake3D
+```
 
 ### Snake Controls
 - A: Move the snake to the right.
